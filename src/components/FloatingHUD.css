@@ -1,0 +1,43 @@
+.floating-hud-wrapper {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  z-index: 9000;
+  display: flex;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  align-items: center;
+}
+
+.floating-hud-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 8px;
+}
+
+.floating-hud-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-hud-btn:not(.whatsapp):hover {
+  color: #fff;
+}
+
+.floating-hud-btn.whatsapp {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.05);
+  padding: 12px;
+  border: 1px solid rgba(37, 211, 102, 0.15);
+}

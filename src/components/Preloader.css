@@ -1,0 +1,73 @@
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.preloader-shutter-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: #030303;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 2;
+}
+
+.preloader-shutter-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: #030303;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 2;
+}
+
+.preloader-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.preloader-brand {
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-right: -16px; /* offset for letter spacing */
+}
+
+.preloader-track {
+  width: 140px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.preloader-counter {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 4px;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,99 @@
+/* 🌌 Premium HUD & AI Agency Design Tokens 2026 */
+
+:root {
+  /* Color Palette */
+  --hud-bg-deep: #0a0a0a;
+  --hud-cyan: #00f2ff;
+  --hud-blue: #4d4dff;
+  --hud-amber: #ffaa00;
+  --hud-glass: rgba(255, 255, 255, 0.05);
+  --hud-border: rgba(0, 242, 255, 0.3);
+  --hud-glow: rgba(0, 242, 255, 0.15);
+  
+  /* Effects */
+  --hud-blur: blur(12px);
+  --hud-transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 🧬 Base HUD Card Style */
+.hud-glass-panel {
+  background: var(--hud-glass);
+  -webkit-backdrop-filter: var(--hud-blur);
+  backdrop-filter: var(--hud-blur);
+  border: 1px solid var(--hud-border);
+  border-radius: 4px;
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 10px var(--hud-glow),
+    inset 0 0 5px var(--hud-glow);
+  transition: var(--hud-transition);
+}
+
+.hud-glass-panel:hover {
+  border-color: var(--hud-cyan);
+  box-shadow: 
+    0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 20px var(--hud-glow),
+    inset 0 0 10px var(--hud-glow);
+  transform: translateY(-2px);
+}
+
+/* 📡 Scanline Effect */
+.hud-scanline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.hud-scanline-container::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 242, 255, 0.03) 3px,
+    rgba(0, 242, 255, 0) 4px
+  );
+  pointer-events: none;
+  animation: hud-scan 10s linear infinite;
+  z-index: 10;
+}
+
+@keyframes hud-scan {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+/* ⚡ Holographic Flickering */
+.hud-flicker {
+  animation: hud-flicker-anim 4s infinite;
+}
+
+@keyframes hud-flicker-anim {
+  0% { opacity: 1; filter: brightness(1); }
+  2% { opacity: 0.8; filter: brightness(1.2); }
+  4% { opacity: 1; filter: brightness(1); }
+  7% { opacity: 0.9; filter: brightness(0.8); }
+  9% { opacity: 1; filter: brightness(1); }
+  100% { opacity: 1; filter: brightness(1); }
+}
+
+/* 📊 Data Stream Text */
+.hud-data-text {
+  font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--hud-cyan);
+  text-shadow: 0 0 8px var(--hud-cyan);
+}
+
+/* 🌫️ Digital Noise (Grain) Utility */
+.hud-noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
