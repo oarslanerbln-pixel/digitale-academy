@@ -13,6 +13,7 @@ const words = [
 export default function Reel() {
   const [index, setIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Motion values for smooth 3D tilt effect
   const x = useMotionValue(0);
@@ -27,6 +28,14 @@ export default function Reel() {
       setIndex((prev) => (prev + 1) % words.length);
     }, 2500);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Video autoplay prevented:", error);
+      });
+    }
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -65,6 +74,7 @@ export default function Reel() {
       >
         {/* The Looping Aerial Drone Video */}
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 

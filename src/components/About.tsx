@@ -45,15 +45,16 @@ export default function About() {
         
         {/* Founder Image Profile */}
         <div className="about-image-container">
-
-          
+          <div className="about-glow-orb" />
           <motion.img 
-            src="/founder_profile.png" 
+            src="/founder_final.png" 
             alt="Founder & Digital Architect"
             whileHover={{ scale: 1.02, filter: 'grayscale(0%) contrast(1.1)' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="about-profile-img"
+            style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
           />
+          <div className="about-image-vignette" />
         </div>
 
         {/* Text Details */}

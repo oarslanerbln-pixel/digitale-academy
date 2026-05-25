@@ -17,71 +17,33 @@ function ModelLoader() {
   );
 }
 
-/* ─── 1. Drone Chassis Mount (Top Platform) ─── */
-function ChassisMount() {
+/* ─── 1. Tripod Head (Base) ─── */
+function TripodHead() {
   return (
-    <group position={[0, 1.5, 0]}>
-      {/* Upper chassis mounting plate */}
+    <group position={[0, -1.8, 0]}>
       <mesh>
-        <boxGeometry args={[1.3, 0.1, 1.3]} />
-        <meshPhysicalMaterial
-          color="#151312"
-          roughness={0.4}
-          metalness={0.8}
-        />
+        <cylinderGeometry args={[0.6, 0.7, 0.4, 32]} />
+        <meshPhysicalMaterial color="#111" roughness={0.6} metalness={0.8} />
       </mesh>
-      {/* Circular connector ring */}
-      <mesh position={[0, -0.08, 0]}>
-        <cylinderGeometry args={[0.45, 0.45, 0.08, 32]} />
-        <meshPhysicalMaterial
-          color="#c5a073"
-          roughness={0.15}
-          metalness={0.95}
-        />
+      <mesh position={[0, 0.25, 0]}>
+        <cylinderGeometry args={[0.55, 0.55, 0.1, 32]} />
+        <meshPhysicalMaterial color="#c5a073" roughness={0.2} metalness={0.9} />
       </mesh>
-      {/* Center connector shaft */}
-      <mesh position={[0, -0.16, 0]}>
-        <cylinderGeometry args={[0.15, 0.15, 0.1, 16]} />
-        <meshPhysicalMaterial
-          color="#2a2522"
-          roughness={0.1}
-          metalness={0.95}
-        />
+      <mesh position={[0, 0.6, 0]}>
+        <cylinderGeometry args={[0.2, 0.2, 0.6, 16]} />
+        <meshPhysicalMaterial color="#222" roughness={0.4} metalness={0.9} />
       </mesh>
     </group>
   );
 }
 
-/* ─── 2. Concentric Lens Glass Element ─── */
-function LensGlass() {
-  return (
-    <mesh position={[0, 0, 0.49]} scale={[1, 1, 0.3]}>
-      <sphereGeometry args={[0.26, 32, 32]} />
-      <MeshTransmissionMaterial
-        backside
-        samples={6}
-        thickness={0.3}
-        chromaticAberration={0.25}
-        anisotropy={0.2}
-        distortion={0.1}
-        distortionScale={0.1}
-        temporalDistortion={0.05}
-        transmission={1.0}
-        roughness={0.02}
-        color="#ffffff"
-      />
-    </mesh>
-  );
-}
-
-/* ─── 3. Faint Scanning Laser Beam (REC Target Laser) ─── */
+/* ─── 2. Faint Scanning Laser Beam (REC Target Laser) ─── */
 function LaserBeam() {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (!meshRef.current) return;
     const t = state.clock.getElapsedTime();
-    // Pulse the laser scale and opacity slightly to simulate scanning
     const pulse = 0.8 + Math.sin(t * 12) * 0.2;
     meshRef.current.scale.set(pulse, 1, pulse);
     if (meshRef.current.material) {
@@ -91,7 +53,6 @@ function LaserBeam() {
 
   return (
     <mesh ref={meshRef} position={[0, 0, 3.4]} rotation={[Math.PI / 2, 0, 0]}>
-      {/* 6-unit long thin cylinder representing the laser beam */}
       <cylinderGeometry args={[0.005, 0.012, 6.0, 8]} />
       <meshBasicMaterial
         color="#ff1e46"
@@ -104,7 +65,7 @@ function LaserBeam() {
   );
 }
 
-/* ─── 4. Dynamic Camera HUD Telemetry (Ref-based 60FPS updates) ─── */
+/* ─── 3. Dynamic Camera HUD Telemetry (Ref-based 60FPS updates) ─── */
 interface CameraHUDProps {
   yawTextRef: React.RefObject<HTMLSpanElement>;
   pitchTextRef: React.RefObject<HTMLSpanElement>;
@@ -115,7 +76,6 @@ function CameraHUD({ yawTextRef, pitchTextRef, isHovered }: CameraHUDProps) {
   const [dateStr, setDateStr] = useState('');
 
   useEffect(() => {
-    // Technical date format
     const pad = (n: number) => n.toString().padStart(2, '0');
     const d = new Date();
     setDateStr(`${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`);
@@ -167,14 +127,12 @@ function CameraHUD({ yawTextRef, pitchTextRef, isHovered }: CameraHUDProps) {
           }
         `}</style>
 
-        {/* Viewfinder Target Border brackets */}
         <div style={{ position: 'absolute', width: '240px', height: '240px', pointerEvents: 'none' }}>
           <div className="hud-viewfinder-bracket hud-viewfinder-tl" />
           <div className="hud-viewfinder-bracket hud-viewfinder-tr" />
           <div className="hud-viewfinder-bracket hud-viewfinder-bl" />
           <div className="hud-viewfinder-bracket hud-viewfinder-br" />
 
-          {/* Central tiny crosshair */}
           <div style={{
             position: 'absolute',
             top: '50%',
@@ -189,65 +147,35 @@ function CameraHUD({ yawTextRef, pitchTextRef, isHovered }: CameraHUDProps) {
           </div>
         </div>
 
-        {/* Left Side: GIMBAL STATUS & ENCODER ANGLE READOUTS */}
-        <div style={{
-          position: 'absolute',
-          left: '10px',
-          top: '32px',
-          textAlign: 'left'
-        }} className="hud-tech-text">
+        <div style={{ position: 'absolute', left: '10px', top: '32px', textAlign: 'left' }} className="hud-tech-text">
           <span style={{ color: '#ff2b56' }} className="hud-pulse-rec">● REC</span> [ACTIVE]
-          <br />
-          SYS.MODE // MOT.TRACK
-          <br />
-          FPS.RATE // 60.0
+          <br />SYS.MODE // MOT.TRACK
+          <br />FPS.RATE // 60.0
         </div>
 
-        <div style={{
-          position: 'absolute',
-          left: '10px',
-          bottom: '32px',
-          textAlign: 'left'
-        }} className="hud-tech-text">
-          <span ref={yawTextRef}>YAW: 0.0°</span>
-          <br />
-          <span ref={pitchTextRef}>PITCH: 0.0°</span>
-          <br />
-          ROLL: 0.0° (LOCK)
+        <div style={{ position: 'absolute', left: '10px', bottom: '32px', textAlign: 'left' }} className="hud-tech-text">
+          <span ref={yawTextRef}>PAN: 0.0°</span>
+          <br /><span ref={pitchTextRef}>TILT: 0.0°</span>
+          <br />ROLL: 0.0° (LOCK)
         </div>
 
-        {/* Right Side: CAMERA SPECIFICATIONS */}
-        <div style={{
-          position: 'absolute',
-          right: '10px',
-          top: '32px',
-          textAlign: 'right'
-        }} className="hud-tech-text">
+        <div style={{ position: 'absolute', right: '10px', top: '32px', textAlign: 'right' }} className="hud-tech-text">
           LENS.FOCAL // 35MM
-          <br />
-          APERTURE  // F/2.8
-          <br />
-          DATE.VAL  // {dateStr}
+          <br />APERTURE  // F/2.8
+          <br />DATE.VAL  // {dateStr}
         </div>
 
-        <div style={{
-          position: 'absolute',
-          right: '10px',
-          bottom: '32px',
-          textAlign: 'right'
-        }} className="hud-tech-text">
+        <div style={{ position: 'absolute', right: '10px', bottom: '32px', textAlign: 'right' }} className="hud-tech-text">
           SHUTTER   // 1/120s
-          <br />
-          ISO.GAIN  // 320
-          <br />
-          FOCUS     // AUTO (3.42m)
+          <br />ISO.GAIN  // 320
+          <br />FOCUS     // AUTO (3.42m)
         </div>
       </div>
     </Html>
   );
 }
 
-/* ─── 5. Floating Ambient Dust Particles ─── */
+/* ─── 4. Floating Ambient Dust Particles ─── */
 function AmbientDust() {
   const ref = useRef<THREE.Points>(null);
 
@@ -285,18 +213,17 @@ function AmbientDust() {
   );
 }
 
-/* ─── 6. Motorized Drone Gimbal Assembly ─── */
-interface DroneGimbalProps {
+/* ─── 5. Professional Cinema Camera Rig ─── */
+interface ProCameraProps {
   yawTextRef: React.RefObject<HTMLSpanElement>;
   pitchTextRef: React.RefObject<HTMLSpanElement>;
   isHovered: boolean;
 }
 
-function DroneGimbal({ yawTextRef, pitchTextRef, isHovered }: DroneGimbalProps) {
+function ProCameraRig({ yawTextRef, pitchTextRef, isHovered }: ProCameraProps) {
   const yawGroupRef = useRef<THREE.Group>(null);
   const pitchGroupRef = useRef<THREE.Group>(null);
 
-  // Mouse coordinate angle storage
   const currentYaw = useRef(0);
   const currentPitch = useRef(0);
 
@@ -306,157 +233,140 @@ function DroneGimbal({ yawTextRef, pitchTextRef, isHovered }: DroneGimbalProps) 
     let targetPitch = 0;
 
     if (isHovered) {
-      // 1. yaw: pointer.x maps -1 to 1 -> Yaw target angle is around -45 to 45 deg (-0.78 to 0.78 rad)
-      // 2. pitch: pointer.y maps -1 to 1 -> Pitch target angle is around -30 to 30 deg (-0.52 to 0.52 rad)
-      targetYaw = state.pointer.x * 0.75;
-      targetPitch = -state.pointer.y * 0.52; // Inverted vertical pitch
+      targetYaw = state.pointer.x * 0.8;
+      targetPitch = -state.pointer.y * 0.4;
     } else {
-      // Auto-scan mode (slow, smooth figure-8 sweep for mobile/idle)
-      // Yaw sweeps slowly: sin(t * 0.35) * 0.45 (range: ~ -25 to +25 degrees)
-      // Pitch sweeps slowly: cos(t * 0.22) * 0.22 (range: ~ -12 to +12 degrees)
-      targetYaw = Math.sin(t * 0.35) * 0.45;
-      targetPitch = Math.cos(t * 0.22) * 0.22;
+      targetYaw = Math.sin(t * 0.3) * 0.4;
+      targetPitch = Math.cos(t * 0.2) * 0.15;
     }
 
-    // Slow and smooth hydraulic movement when scanning, slightly faster when tracking mouse
-    const lerpSpeed = isHovered ? 6.0 : 1.5;
+    const lerpSpeed = isHovered ? 5.0 : 1.5;
     currentYaw.current += (targetYaw - currentYaw.current) * lerpSpeed * delta;
     currentPitch.current += (targetPitch - currentPitch.current) * lerpSpeed * delta;
 
-    // Apply rotations
-    if (yawGroupRef.current) {
-      yawGroupRef.current.rotation.y = currentYaw.current;
-    }
-    if (pitchGroupRef.current) {
-      pitchGroupRef.current.rotation.x = currentPitch.current;
-    }
+    if (yawGroupRef.current) yawGroupRef.current.rotation.y = currentYaw.current;
+    if (pitchGroupRef.current) pitchGroupRef.current.rotation.x = currentPitch.current;
 
-    // Convert to degrees and update the HTML HUD text elements directly (60fps updates, 0 react re-renders)
     const yawDegrees = (currentYaw.current * 180) / Math.PI;
     const pitchDegrees = (currentPitch.current * 180) / Math.PI;
 
-    if (yawTextRef.current) {
-      yawTextRef.current.innerText = `YAW: ${yawDegrees.toFixed(1)}°`;
-    }
-    if (pitchTextRef.current) {
-      pitchTextRef.current.innerText = `PITCH: ${pitchDegrees.toFixed(1)}°`;
-    }
+    if (yawTextRef.current) yawTextRef.current.innerText = `PAN: ${yawDegrees.toFixed(1)}°`;
+    if (pitchTextRef.current) pitchTextRef.current.innerText = `TILT: ${pitchDegrees.toFixed(1)}°`;
   });
 
   return (
-    <group position={[0, 0.1, 0]}>
-      {/* ─── ROTATION 1: YAW GROUP (Horizonal Swing) ─── */}
+    <group position={[0, -0.6, 0]}>
+      {/* ─── PAN AXIS (YAW) ─── */}
       <group ref={yawGroupRef}>
         
-        {/* Top central swivel hub base */}
-        <mesh position={[0, 1.1, 0]}>
-          <cylinderGeometry args={[0.26, 0.26, 0.16, 24]} />
-          <meshPhysicalMaterial
-            color="#2a2522"
-            roughness={0.2}
-            metalness={0.9}
-            clearcoat={1.0}
-          />
+        {/* Tilt Bracket (U-Shape) */}
+        <mesh position={[0, -0.2, 0]}>
+          <boxGeometry args={[1.6, 0.15, 0.8]} />
+          <meshPhysicalMaterial color="#1a1715" roughness={0.5} metalness={0.7} />
         </mesh>
-        
-        {/* Outer Yoke Frame Bracket (U-Shape Support structure) */}
-        {/* Horizontal crossbar below top connector */}
-        <mesh position={[0, 0.96, 0]}>
-          <boxGeometry args={[1.5, 0.12, 0.28]} />
-          <meshPhysicalMaterial color="#1a1715" roughness={0.3} metalness={0.8} />
+        <mesh position={[-0.75, 0.4, 0]}>
+          <boxGeometry args={[0.15, 1.2, 0.6]} />
+          <meshPhysicalMaterial color="#1a1715" roughness={0.5} metalness={0.7} />
         </mesh>
-        {/* Left vertical arm */}
-        <mesh position={[-0.72, 0.36, 0]}>
-          <boxGeometry args={[0.12, 1.2, 0.28]} />
-          <meshPhysicalMaterial color="#1a1715" roughness={0.3} metalness={0.8} />
-        </mesh>
-        {/* Right vertical arm */}
-        <mesh position={[0.72, 0.36, 0]}>
-          <boxGeometry args={[0.12, 1.2, 0.28]} />
-          <meshPhysicalMaterial color="#1a1715" roughness={0.3} metalness={0.8} />
+        <mesh position={[0.75, 0.4, 0]}>
+          <boxGeometry args={[0.15, 1.2, 0.6]} />
+          <meshPhysicalMaterial color="#1a1715" roughness={0.5} metalness={0.7} />
         </mesh>
 
-        {/* Left Motor joint cylinder */}
-        <mesh position={[-0.78, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.16, 0.16, 0.12, 24]} />
-          <meshPhysicalMaterial color="#c5a073" roughness={0.1} metalness={0.98} />
-        </mesh>
-        {/* Right Motor joint cylinder */}
-        <mesh position={[0.78, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.16, 0.16, 0.12, 24]} />
-          <meshPhysicalMaterial color="#c5a073" roughness={0.1} metalness={0.98} />
-        </mesh>
-
-        {/* ─── ROTATION 2: PITCH GROUP (Vertical Tilt) ─── */}
-        {/* Suspended between the left/right motor joints */}
-        <group ref={pitchGroupRef}>
+        {/* ─── TILT AXIS (PITCH) ─── */}
+        <group ref={pitchGroupRef} position={[0, 0.7, 0]}>
           
-          {/* Inner Yaw Bracket ring holding the camera */}
-          <mesh rotation={[0, 0, Math.PI / 2]}>
-            <torusGeometry args={[0.62, 0.05, 12, 48]} />
-            <meshPhysicalMaterial color="#c5a073" roughness={0.08} metalness={0.98} />
+          {/* Main Camera Body (Boxy RED style) */}
+          <mesh position={[0, 0, -0.2]}>
+            <boxGeometry args={[0.9, 0.9, 1.2]} />
+            <meshPhysicalMaterial color="#121212" roughness={0.4} metalness={0.6} />
           </mesh>
 
-          {/* Camera housing body */}
-          <group>
-            {/* Cylindrical core body housing (Z-axis aligned) */}
-            <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <cylinderGeometry args={[0.44, 0.44, 0.82, 32]} />
-              <meshPhysicalMaterial
-                color="#121110"
-                roughness={0.2}
-                metalness={0.9}
+          {/* Top Handle (Cheese plate) */}
+          <mesh position={[0, 0.6, -0.1]}>
+            <boxGeometry args={[0.15, 0.3, 0.8]} />
+            <meshPhysicalMaterial color="#111" roughness={0.5} metalness={0.8} />
+          </mesh>
+          <mesh position={[0, 0.75, 0.1]}>
+            <boxGeometry args={[0.15, 0.1, 1.2]} />
+            <meshPhysicalMaterial color="#222" roughness={0.4} metalness={0.8} />
+          </mesh>
+
+          {/* V-Mount Battery at the back */}
+          <mesh position={[0, 0, -0.9]}>
+            <boxGeometry args={[0.7, 0.8, 0.2]} />
+            <meshPhysicalMaterial color="#1a1a1a" roughness={0.7} metalness={0.3} />
+          </mesh>
+
+          {/* Side Monitor (Folded out) */}
+          <group position={[0.55, 0.1, 0]} rotation={[0, -Math.PI / 6, 0]}>
+            <mesh position={[0.2, 0, 0]}>
+              <boxGeometry args={[0.4, 0.3, 0.05]} />
+              <meshPhysicalMaterial color="#111" roughness={0.3} metalness={0.8} />
+            </mesh>
+            {/* Screen glow */}
+            <mesh position={[0.2, 0, 0.03]}>
+              <planeGeometry args={[0.35, 0.25]} />
+              <meshBasicMaterial color="#c5a073" opacity={0.8} transparent />
+            </mesh>
+          </group>
+
+          {/* Lens Mount (Bronze ring) */}
+          <mesh position={[0, 0, 0.42]} rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.35, 0.35, 0.05, 32]} />
+            <meshPhysicalMaterial color="#c5a073" roughness={0.2} metalness={0.9} />
+          </mesh>
+
+          {/* Cinema Lens (Large barrel) */}
+          <group position={[0, 0, 0.75]} rotation={[Math.PI / 2, 0, 0]}>
+            {/* Main barrel */}
+            <mesh>
+              <cylinderGeometry args={[0.32, 0.32, 0.6, 32]} />
+              <meshPhysicalMaterial color="#0a0a0a" roughness={0.2} metalness={0.9} />
+            </mesh>
+            {/* Focus/Iris Rings */}
+            <mesh position={[0, -0.1, 0]}>
+              <cylinderGeometry args={[0.33, 0.33, 0.1, 32]} />
+              <meshPhysicalMaterial color="#1a1a1a" roughness={0.6} metalness={0.5} />
+            </mesh>
+            <mesh position={[0, 0.15, 0]}>
+              <cylinderGeometry args={[0.33, 0.33, 0.08, 32]} />
+              <meshPhysicalMaterial color="#1a1a1a" roughness={0.6} metalness={0.5} />
+            </mesh>
+            
+            {/* Matte Box (Front square hood) */}
+            <mesh position={[0, 0.45, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <boxGeometry args={[0.9, 0.7, 0.3]} />
+              <meshPhysicalMaterial color="#0d0d0d" roughness={0.8} metalness={0.1} />
+            </mesh>
+            {/* Matte box opening hole */}
+            <mesh position={[0, 0.46, 0]}>
+              <cylinderGeometry args={[0.35, 0.35, 0.31, 32]} />
+              <meshPhysicalMaterial color="#000" roughness={1.0} metalness={0.0} />
+            </mesh>
+            
+            {/* Lens Glass Elements */}
+            <mesh position={[0, 0.28, 0]}>
+              <sphereGeometry args={[0.26, 32, 32]} />
+              <MeshTransmissionMaterial
+                backside
+                samples={6}
+                thickness={0.3}
+                chromaticAberration={0.25}
+                anisotropy={0.2}
+                distortion={0.1}
+                distortionScale={0.1}
+                temporalDistortion={0.05}
+                transmission={1.0}
+                roughness={0.02}
+                color="#ffffff"
               />
-            </mesh>
-
-            {/* Back battery/port box cover */}
-            <mesh position={[0, 0, -0.42]}>
-              <boxGeometry args={[0.54, 0.54, 0.18]} />
-              <meshPhysicalMaterial color="#1f1d1c" roughness={0.4} metalness={0.7} />
-            </mesh>
-
-            {/* Front primary lens barrel */}
-            <mesh position={[0, 0, 0.42]}>
-              <cylinderGeometry args={[0.34, 0.34, 0.12, 24]} />
-              <meshPhysicalMaterial
-                color="#c5a073"
-                roughness={0.08}
-                metalness={0.98}
-              />
-            </mesh>
-
-            {/* Nested inner lens ring */}
-            <mesh position={[0, 0, 0.48]}>
-              <cylinderGeometry args={[0.29, 0.29, 0.06, 24]} />
-              <meshPhysicalMaterial
-                color="#201c19"
-                roughness={0.05}
-                metalness={0.98}
-              />
-            </mesh>
-
-            {/* Inner CCD Sensor / Aperture Red glow */}
-            <mesh position={[0, 0, 0.47]}>
-              <cylinderGeometry args={[0.22, 0.22, 0.02, 16]} />
-              <meshBasicMaterial color="#ff113a" />
-            </mesh>
-
-            {/* Curved lens glass */}
-            <LensGlass />
-
-            {/* Recording LED indicators on camera sides */}
-            <mesh position={[-0.4, 0.22, 0.1]}>
-              <sphereGeometry args={[0.035, 8, 8]} />
-              <meshBasicMaterial color="#ff003c" />
-            </mesh>
-            <mesh position={[0.4, 0.22, 0.1]}>
-              <sphereGeometry args={[0.035, 8, 8]} />
-              <meshBasicMaterial color="#ff003c" />
             </mesh>
 
             {/* Scanning Laser Beam */}
-            <LaserBeam />
-
+            <group rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.3, 0]}>
+              <LaserBeam />
+            </group>
           </group>
         </group>
       </group>
@@ -501,10 +411,10 @@ export default function Hero3DScene({ modelUrl: _modelUrl }: Hero3DSceneProps) {
           <Center>
             <Suspense fallback={<ModelLoader />}>
               {/* Drone Chassis hanging mount */}
-              <ChassisMount />
+              <TripodHead />
 
               {/* Motorized tracking Gimbal */}
-              <DroneGimbal 
+              <ProCameraRig 
                 yawTextRef={yawTextRef} 
                 pitchTextRef={pitchTextRef} 
                 isHovered={isHovered} 
