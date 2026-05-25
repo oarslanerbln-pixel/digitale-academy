@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      "meta_title": "AI Agency Berlin | 3D SaaS & Cinematic Productions",
-      "meta_description": "Digitale Academy builds premium 3D SaaS ecosystems, AI voice agents, and cinematic cinematography in Berlin. High-end digital architecture for forward-thinking businesses.",
+      "meta_title": "1618 Digital | 3D SaaS & Cinematic Productions",
+      "meta_description": "1618 Digital builds perfectly proportioned 3D SaaS ecosystems, AI voice agents, and cinematic cinematography in Berlin. High-end digital architecture inspired by the Golden Ratio.",
       "hero_title": "We architect digital ecosystems.",
       "hero_subtitle": "Moving beyond simple websites. We build 3D SaaS products, AI Voice Agents, and High-End Productions for forward-thinking businesses.",
       "hero_button": "Explore Ecosystems",
@@ -31,8 +31,8 @@ const resources = {
       "works_impulse_title": "Impulse Production",
       "works_impulse_desc": "High-end cinematic gateway for a creative production studio.",
       "about_title": "Philosophy",
-      "about_subtitle": "Rational. Ethical. Pragmatic.",
-      "about_text": "We don’t believe in bloated code or empty promises. We believe in functional aesthetics and robust digital infrastructure. Our goal is to save you time and build scalable systems that work tirelessly in the background, allowing you to focus on your core business.",
+      "about_subtitle": "Ratio. Ethics.",
+      "about_text": "We believe in the Golden Ratio (1.618)—where proportion meets aesthetic perfection. We don’t believe in bloated code or empty promises. We believe in functional aesthetics and robust digital infrastructure. Our goal is to save you time and build perfectly balanced, scalable systems that work tirelessly in the background.",
       "contact_title": "Initiate a Project",
       "contact_name": "Your Name",
       "contact_email": "Email Address",
@@ -43,13 +43,31 @@ const resources = {
       "stat_projects": "Projects",
       "stat_clients": "Clients",
       "stat_satisfaction": "Satisfaction",
-      "stat_uptime": "AI Uptime"
+      "stat_uptime": "AI Uptime",
+      "wa_operator_online": "● OPERATOR ONLINE",
+      "wa_quick_connect": "WhatsApp Quick-Connect",
+      "wa_tap_to_chat": "TAP TO CHAT",
+      "wa_copied": "COPIED",
+      "wa_copy": "COPY",
+      "wa_message": "Hello, I'm interested in starting a project with 1618 Digital!",
+      "nav_home": "HOME",
+      "nav_home_sub": "SYS.BOOT // CORE INTERFACE",
+      "nav_cinematics": "CINEMATICS",
+      "nav_cinematics_sub": "SYS.REEL // AUDIO VISUAL GRID",
+      "nav_ecosystems": "ECOSYSTEMS",
+      "nav_ecosystems_sub": "SYS.WORK // ARCHITECTED PLATFORMS",
+      "nav_philosophy": "PHILOSOPHY",
+      "nav_philosophy_sub": "SYS.MIND // RATIONAL DESIGN DOCS",
+      "nav_capabilities": "CAPABILITIES",
+      "nav_capabilities_sub": "SYS.SPEC // STACK CAPABILITIES",
+      "nav_initiate": "INITIATE",
+      "nav_initiate_sub": "SYS.COMM // TRANSMIT PROPOSAL"
     }
   },
   de: {
     translation: {
-      "meta_title": "KI-Agentur Berlin | 3D SaaS & Kino-Produktionen",
-      "meta_description": "Digitale Academy entwickelt erstklassige 3D-SaaS-Ökosysteme, KI-Sprachagenten und kinoreife Produktionen in Berlin. High-End-Architektur für moderne Unternehmen.",
+      "meta_title": "1618 Digital | 3D SaaS & Kino-Produktionen",
+      "meta_description": "1618 Digital entwickelt perfekt proportionierte 3D-SaaS-Ökosysteme, KI-Sprachagenten und kinoreife Produktionen in Berlin. High-End-Architektur nach dem Goldenen Schnitt.",
       "hero_title": "Wir kreieren digitale Ökosysteme.",
       "hero_subtitle": "Mehr als nur einfache Websites. Wir entwickeln 3D SaaS-Produkte, KI-Sprachagenten und High-End-Produktionen für moderne Unternehmen.",
       "hero_button": "Ökosysteme Erkunden",
@@ -75,8 +93,8 @@ const resources = {
       "works_impulse_title": "Impulse Production",
       "works_impulse_desc": "High-End-Kino-Portal für ein kreatives Produktionsstudio.",
       "about_title": "Philosophie",
-      "about_subtitle": "Rational. Ethisch. Pragmatisch.",
-      "about_text": "Wir glauben nicht an aufgeblähten Code oder leere Versprechungen. Wir glauben an funktionale Ästhetik und robuste digitale Infrastruktur. Unser Ziel ist es, Ihnen Zeit zu sparen und skalierbare Systeme zu entwickeln, die unermüdlich im Hintergrund arbeiten, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.",
+      "about_subtitle": "Proportion. Ethik.",
+      "about_text": "Wir glauben an den Goldenen Schnitt (1.618) – wo perfekte Proportion auf Ästhetik trifft. Wir glauben nicht an aufgeblähten Code oder leere Versprechungen, sondern an funktionale Ästhetik und robuste digitale Infrastruktur. Unser Ziel ist es, skalierbare, perfekt ausbalancierte Systeme zu entwickeln, die unermüdlich im Hintergrund arbeiten.",
       "contact_title": "Projekt Initiieren",
       "contact_name": "Ihr Name",
       "contact_email": "E-Mail Adresse",
@@ -87,51 +105,25 @@ const resources = {
       "stat_projects": "Projekte",
       "stat_clients": "Kunden",
       "stat_satisfaction": "Zufriedenheit",
-      "stat_uptime": "KI-Uptime"
-    }
-  },
-  tr: {
-    translation: {
-      "meta_title": "Yapay Zeka Ajansı Berlin | 3D SaaS & Sinematik Prodüksiyon",
-      "meta_description": "Digitale Academy; premium 3D SaaS ekosistemleri, yapay zeka sesli asistanları ve üst düzey sinematik çekimler geliştirir. Berlin merkezli dijital mimari.",
-      "hero_title": "Dijital ekosistemler inşa ediyoruz.",
-      "hero_subtitle": "Basit web sitelerinin ötesine geçiyoruz. Geleceği düşünen işletmeler için 3D SaaS ürünleri, Yapay Zeka Ses Asistanları ve Üst Düzey Prodüksiyonlar geliştiriyoruz.",
-      "hero_button": "Ekosistemleri Keşfet",
-      "service_saas_title": "SaaS & Özel İş Akışları",
-      "service_saas_desc": "3D Konfigüratörler, özel rezervasyon motorları ve işletmelere özel paneller.",
-      "service_ai_title": "Yapay Zeka Ses Asistanları",
-      "service_ai_desc": "Tüm potansiyel müşterileri yakalamak için 7/24 insan benzeri sesli asistanlar.",
-      "service_media_title": "Premium Prodüksiyon",
-      "service_media_desc": "Sinematik drone çekimleri ve DaVinci Resolve renk yapılandırması.",
-      "service_social_title": "Sosyal Medya Paketleri",
-      "service_social_desc": "Instagram ve TikTok için yüksek etkileşimli kısa videolar ve içerik stratejileri.",
-      "service_event_title": "Etkinlik ve Düğün Sinematografisi",
-      "service_event_desc": "Duygusal anların en yüksek çözünürlükte ve estetik mükemmellikte ölümsüzleştirilmesi.",
-      "service_trailer_title": "Sinematik Hikaye Anlatımı",
-      "service_trailer_desc": "Vizyonunuzu büyüleyici bir görsel deneyime dönüştüren üst düzey fragman ve tanıtımlar.",
-      "contact_button": "Birlikte İnşa Edelim",
-      "language": "TR",
-      "works_title": "Seçili Ekosistemler",
-      "works_donerbros_title": "Döner Bros Berlin",
-      "works_donerbros_desc": "Berlin'in önde gelen sokak yemeği markası için dijital kimlik ve medya varlığı.",
-      "works_sera_title": "Sera Event",
-      "works_sera_desc": "Özel dijital akışlara sahip premium etkinlik yönetimi platformu.",
-      "works_impulse_title": "Impulse Production",
-      "works_impulse_desc": "Yaratıcı bir prodüksiyon stüdyosu için üst düzey sinematik vitrin.",
-      "about_title": "Felsefemiz",
-      "about_subtitle": "Rasyonel. Etik. Pragmatik.",
-      "about_text": "Şişirilmiş kodlara veya boş vaatlere inanmıyoruz. İşlevsel estetiğe ve sağlam dijital altyapıya inanıyoruz. Amacımız size zaman kazandırmak ve arka planda yorulmaksızın çalışarak kendi işinize odaklanmanızı sağlayacak ölçeklenebilir sistemler inşa etmektir.",
-      "contact_title": "Bir Proje Başlatın",
-      "contact_name": "İsminiz",
-      "contact_email": "E-posta Adresiniz",
-      "contact_message": "Proje Detayları...",
-      "contact_send": "Mesaj Gönder",
-      "contact_success": "Mesajınız alındı. Sizinle en kısa sürede iletişime geçeceğiz.",
-      "contact_dsgvo_consent": "Verilerimin gizlilik politikasına uygun şekilde işlenmesini kabul ediyorum. Verilerim yalnızca talebimin işlenmesi için kullanılacak ve üçüncü taraflarla paylaşılmayacaktır.",
-      "stat_projects": "Projeler",
-      "stat_clients": "Müşteriler",
-      "stat_satisfaction": "Memnuniyet",
-      "stat_uptime": "AI Uptime"
+      "stat_uptime": "KI-Uptime",
+      "wa_operator_online": "● OPERATOR ONLINE",
+      "wa_quick_connect": "WhatsApp Schnellkontakt",
+      "wa_tap_to_chat": "JETZT CHATTEN",
+      "wa_copied": "KOPIERT",
+      "wa_copy": "KOPIEREN",
+      "wa_message": "Hallo, ich interessiere mich für ein Projekt mit 1618 Digital!",
+      "nav_home": "STARTSEITE",
+      "nav_home_sub": "SYS.BOOT // HAUPTSCHNITTSTELLE",
+      "nav_cinematics": "KINEMATOGRAPHIE",
+      "nav_cinematics_sub": "SYS.REEL // AUDIOVISUELLES RASTER",
+      "nav_ecosystems": "ÖKOSYSTEME",
+      "nav_ecosystems_sub": "SYS.WORK // DIGITALE ARCHITEKTUR",
+      "nav_philosophy": "PHILOSOPHIE",
+      "nav_philosophy_sub": "SYS.MIND // RATIONALE PHILOSOPHIE",
+      "nav_capabilities": "KOMPETENZEN",
+      "nav_capabilities_sub": "SYS.SPEC // STACK-SPEZIFIKATIONEN",
+      "nav_initiate": "KONTAKT",
+      "nav_initiate_sub": "SYS.COMM // PROJEKT INITIIGEREN"
     }
   }
 };
@@ -141,7 +133,7 @@ const getUserLanguage = () => {
   if (storedLang) return storedLang;
 
   const browserLang = navigator.language.split('-')[0];
-  const supportedLangs = ['en', 'de', 'tr'];
+  const supportedLangs = ['en', 'de'];
   return supportedLangs.includes(browserLang) ? browserLang : 'en';
 };
 

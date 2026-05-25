@@ -1,15 +1,15 @@
 @import './styles/premium-hud.css';
 
 :root {
-  --bg-dark: #050505; /* Sleek Onyx Black */
-  --text-main: #ffffff;
-  --text-muted: #a3a3a3; /* Elegant neutral gray */
-  --glass-bg: rgba(5, 5, 5, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --accent-cyan: #00f2ff; /* High-tech cyan */
-  --accent-purple: #7000ff; /* Deep tech purple */
-  --accent-silver: #e2e2e5; 
-  --accent-platinum: #f8f8fa; 
+  --bg-dark: #0a0908; /* Rich Dark Roasted Espresso */
+  --text-main: #faf8f6; /* Premium Alabaster White */
+  --text-muted: #a69f99; /* Elegant Warm Stone Grey */
+  --glass-bg: rgba(10, 9, 8, 0.75); /* Deep Chocolate Glass */
+  --glass-border: rgba(250, 248, 246, 0.06);
+  --accent-cyan: #c5a073; /* Metallic Bronze Gold */
+  --accent-purple: #855b32; /* Rich Cocoa Brown */
+  --accent-silver: #d5cfc9; /* Warm technical silver */
+  --accent-platinum: #faf6f0; /* Soft warm platinum */
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1); 
 }
 
@@ -26,7 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-dark);
-  color: var(--text-primary);
+  color: var(--text-main);
   overflow-x: hidden;
   position: relative;
 }

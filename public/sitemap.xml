@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://digitale-academy.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://digitale-academy.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://digitale-academy.com/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://digitale-academy.com/?lang=tr"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://digitale-academy.com/"/>
+    <loc>https://1618-digital.de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1618-digital.de/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://1618-digital.de/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://1618-digital.de/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1618-digital.de/"/>
     <lastmod>2026-04-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>

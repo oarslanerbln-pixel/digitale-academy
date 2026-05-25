@@ -1,0 +1,286 @@
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM WHATSAPP FLOATING WIDGET
+   ═══════════════════════════════════════════════════════════════ */
+
+.wa-widget-wrapper {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  z-index: 999;
+  font-family: 'Outfit', sans-serif;
+  pointer-events: auto;
+}
+
+/* 🚨 WhatsApp Floating Button */
+.wa-floating-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid rgba(37, 211, 102, 0.2); /* Soft WhatsApp Green border */
+  color: #25d366; /* WhatsApp Green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(37, 211, 102, 0.05);
+  transition: all 0.4s var(--ease-premium);
+  outline: none;
+}
+
+.wa-floating-btn:hover {
+  border-color: rgba(37, 211, 102, 0.5);
+  color: #34e073;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(37, 211, 102, 0.2);
+}
+
+.wa-icon {
+  filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.4));
+  transition: transform 0.4s var(--ease-premium);
+  z-index: 2;
+}
+
+.wa-floating-btn:hover .wa-icon {
+  transform: rotate(15deg) scale(1.05);
+}
+
+/* Pulsing Ambient Green Ring */
+.wa-btn-pulse {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid #25d366;
+  opacity: 0.6;
+  animation: wa-pulse-ring 2.2s infinite cubic-bezier(0.25, 0, 0, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes wa-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Technical Rotating Frame Line */
+.wa-btn-frame {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(37, 211, 102, 0.15);
+  animation: wa-frame-rotate 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes wa-frame-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Online status indicator dot */
+.wa-status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #25d366;
+  border: 2px solid var(--bg-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #25d366;
+  z-index: 3;
+}
+
+/* ─── Hover Telemetry Details Tooltip ─── */
+.wa-detail-tooltip {
+  position: absolute;
+  bottom: 76px;
+  left: 0;
+  width: 280px;
+  background: linear-gradient(155deg, rgba(12, 11, 10, 0.95) 0%, rgba(10, 9, 8, 0.98) 100%);
+  border: 1px solid rgba(37, 211, 102, 0.18);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(37, 211, 102, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+
+.wa-detail-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  background: rgba(10, 9, 8, 0.98);
+  border-right: 1px solid rgba(37, 211, 102, 0.18);
+  border-bottom: 1px solid rgba(37, 211, 102, 0.18);
+  transform: rotate(45deg);
+}
+
+/* Tooltip Header */
+.wa-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 8px;
+}
+
+.wa-live-tag {
+  font-family: monospace;
+  font-size: 7.5px;
+  color: #25d366;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 4px rgba(37, 211, 102, 0.4);
+}
+
+.wa-tech-id {
+  font-family: monospace;
+  font-size: 7px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Tooltip Body */
+.wa-tooltip-body {
+  cursor: pointer;
+}
+
+.wa-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin: 0 0 2px 0;
+}
+
+.wa-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0 0 8px 0;
+}
+
+.wa-link-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(37, 211, 102, 0.04);
+  border: 1px solid rgba(37, 211, 102, 0.08);
+  transition: all 0.3s;
+}
+
+.wa-tooltip-body:hover .wa-link-preview {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.2);
+}
+
+.wa-phone-number {
+  font-family: monospace;
+  font-size: 0.72rem;
+  color: #25d366;
+  font-weight: 600;
+}
+
+.wa-arrow {
+  color: #25d366;
+  transition: transform 0.3s;
+}
+
+.wa-tooltip-body:hover .wa-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Action buttons at bottom of tooltip */
+.wa-tooltip-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.wa-action-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.wa-chat-now {
+  flex: 1;
+  background: #25d366;
+  color: #000;
+}
+
+.wa-chat-now:hover {
+  background: #34e073;
+  box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
+}
+
+.wa-copy-number {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wa-copy-number:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wa-copy-number.is-copied {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.3);
+  color: #25d366;
+}
+
+/* ─── Mobile Responsiveness ─── */
+@media (max-width: 500px) {
+  .wa-widget-wrapper {
+    bottom: 24px;
+    left: 24px;
+  }
+  
+  .wa-floating-btn {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .wa-detail-tooltip {
+    bottom: 68px;
+    left: 0;
+    width: 250px;
+    padding: 14px;
+  }
+  
+  .wa-detail-tooltip::before {
+    left: 20px;
+  }
+}

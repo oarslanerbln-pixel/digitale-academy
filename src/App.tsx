@@ -17,6 +17,8 @@ import Footer from './components/Footer';
 import LegalModal from './components/LegalModal';
 import CookieConsent from './components/CookieConsent';
 import MarqueeTextBand from './components/MarqueeTextBand';
+import AIChatDrawer from './components/AIChatDrawer';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import { ReactLenis } from '@studio-freight/react-lenis';
 
 function App() {
@@ -70,6 +72,8 @@ function App() {
         <CustomCursor />
         <NavigationMenu />
         <LanguageToggle />
+        <AIChatDrawer />
+        <WhatsAppWidget />
         <CookieConsent forceShow={forceShowCookies} onCloseForceShow={() => setForceShowCookies(false)} />
         <LegalModal isOpen={!!legalModalType} type={legalModalType} onClose={() => setLegalModalType(null)} />
         <main>

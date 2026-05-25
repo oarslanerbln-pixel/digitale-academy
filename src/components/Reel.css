@@ -1,9 +1,10 @@
 .reel-section {
-  padding: 40px 24px;
+  padding: 60px 24px;
   position: relative;
   z-index: 10;
   max-width: 1200px;
   margin: 0 auto;
+  perspective: 1200px; /* 3D depth context for page scroll */
 }
 
 .reel-glass-panel {
@@ -12,22 +13,33 @@
   aspect-ratio: 16/9;
   position: relative;
   padding: 8px; /* Inner bezel */
-  background: rgba(5, 5, 5, 0.9) !important;
-  border: 1px solid rgba(255, 106, 0, 0.2) !important;
-  transition: box-shadow 0.5s var(--ease-premium);
+  background: rgba(10, 9, 8, 0.8) !important;
+  border: 1px solid rgba(197, 160, 115, 0.15) !important;
+  transition: box-shadow 0.5s var(--ease-premium), border-color 0.5s var(--ease-premium);
+  will-change: transform;
 }
 
 .reel-glass-panel:hover {
-  box-shadow: 0 0 60px rgba(255, 106, 0, 0.1);
+  border-color: rgba(197, 160, 115, 0.4) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(197, 160, 115, 0.1);
 }
 
-/* Always-on glow border, slow smooth rotation */
+/* Always-on slow smooth rotation glow */
 .reel-glass-panel.glow-card::before {
-  opacity: 0.7;
-  animation: glow-spin 12s linear infinite;
+  opacity: 0.4;
+  animation: glow-spin 15s linear infinite;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--accent-cyan) 25%,
+    transparent 50%,
+    var(--accent-purple) 75%,
+    transparent 100%
+  );
 }
+
 .reel-glass-panel.glow-card:hover::before {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .reel-video {
@@ -35,26 +47,144 @@
   height: 100%;
   object-fit: cover;
   border-radius: 24px;
-  opacity: 0.9;
-  filter: contrast(1.05) saturate(1.05);
+  opacity: 0.85;
+  filter: contrast(1.08) saturate(1.02) brightness(0.9);
+  transition: opacity 0.5s var(--ease-premium);
+}
+
+.reel-glass-panel:hover .reel-video {
+  opacity: 0.95;
 }
 
 .reel-vignette {
   position: absolute;
-  inset: 0;
+  inset: 8px;
   border-radius: 24px;
   pointer-events: none;
-  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.95);
-  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.7) 120%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.95);
+  background: radial-gradient(circle, transparent 40%, rgba(10, 9, 8, 0.6) 120%);
 }
 
+/* ─── HUD Camera Viewfinder Styles ─── */
+.hud-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--accent-cyan);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.6;
+  transition: opacity 0.4s var(--ease-premium), border-color 0.4s var(--ease-premium);
+}
+
+.reel-glass-panel:hover .hud-corner {
+  opacity: 0.9;
+  border-color: var(--accent-platinum);
+}
+
+.hud-corner-tl { top: 24px; left: 24px; border-width: 2px 0 0 2px; }
+.hud-corner-tr { top: 24px; right: 24px; border-width: 2px 2px 0 0; }
+.hud-corner-bl { bottom: 24px; left: 24px; border-width: 0 0 2px 2px; }
+.hud-corner-br { bottom: 24px; right: 24px; border-width: 0 2px 2px 0; }
+
+.camera-hud-info {
+  position: absolute;
+  font-family: 'Space Mono', monospace, sans-serif;
+  font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--accent-platinum);
+  opacity: 0.75;
+  z-index: 3;
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.4s var(--ease-premium);
+}
+
+.reel-glass-panel:hover .camera-hud-info {
+  opacity: 0.95;
+}
+
+.hud-top-left {
+  top: 28px;
+  left: 54px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-top-right { top: 28px; right: 54px; text-align: right; }
+.hud-bottom-left { bottom: 28px; left: 54px; }
+.hud-bottom-right { bottom: 28px; right: 54px; text-align: right; }
+
+.hud-rec-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #ff3b30;
+  animation: hud-rec-pulse 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes hud-rec-pulse {
+  from { opacity: 0.2; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+/* Center Crosshair */
+.hud-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.4s var(--ease-premium);
+}
+
+.reel-glass-panel:hover .hud-crosshair {
+  opacity: 0.45;
+}
+
+.hud-crosshair::before,
+.hud-crosshair::after {
+  content: '';
+  position: absolute;
+  background: var(--accent-cyan);
+}
+.hud-crosshair::before { top: 15px; left: 0; width: 32px; height: 1px; }
+.hud-crosshair::after { top: 0; left: 15px; width: 1px; height: 32px; }
+
+/* Center Focus Ring */
+.hud-focus-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(100px, 15vw, 160px);
+  height: clamp(100px, 15vw, 160px);
+  border: 1px dashed rgba(197, 160, 115, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
+}
+
+.reel-glass-panel:hover .hud-focus-ring {
+  border-color: rgba(197, 160, 115, 0.4);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ─── Animated Text Overlay ─── */
 .reel-text-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,13 +192,32 @@
 }
 
 .reel-text {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 6vw, 4.5rem);
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 12px;
+  letter-spacing: clamp(8px, 2.5vw, 18px);
   text-transform: uppercase;
-  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 15px 50px rgba(0, 0, 0, 0.95);
   position: absolute;
   text-align: center;
   width: 100%;
+}
+
+/* Mobile responsiveness adaptations */
+@media (max-width: 768px) {
+  .reel-section {
+    padding: 30px 16px;
+  }
+  .hud-corner {
+    width: 12px;
+    height: 12px;
+  }
+  .hud-corner-tl { top: 16px; left: 16px; }
+  .hud-corner-tr { top: 16px; right: 16px; }
+  .hud-corner-bl { bottom: 16px; left: 16px; }
+  .hud-corner-br { bottom: 16px; right: 16px; }
+
+  .hud-top-left { top: 18px; left: 36px; }
+  .hud-top-right { top: 18px; right: 36px; }
+  .hud-bottom-left { bottom: 18px; left: 36px; }
+  .hud-bottom-right { bottom: 18px; right: 36px; }
 }

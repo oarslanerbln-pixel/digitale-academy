@@ -19,15 +19,14 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
         <>
           <p><strong>Angaben gemäß § 5 TMG</strong></p>
           <p>
-            Ömer Faruk Arslaner<br />
-            Digitale Academy<br />
+            1618 Digital<br />
+            Represented by: Ömer Arslaner<br />
             Wirmerzeile 4<br />
-            13627 Berlin
-          </p>
-          <p><strong>Kontakt</strong></p>
-          <p>
-            Telefon: +49 178 7277867<br />
-            E-Mail: info@digitale-academy.de
+            13627 Berlin<br />
+            Germany<br /><br />
+            
+            <strong>Contact:</strong><br />
+            E-Mail: info@1618-digital.de
           </p>
           <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong></p>
           <p>
@@ -72,11 +71,11 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
           <p><strong>2. Verantwortlicher</strong></p>
           <p>
             Verantwortlicher im Sinne der DSGVO:<br/>
-            Ömer Faruk Arslaner<br/>
-            Digitale Academy<br/>
-            Wirmerzeile 4<br/>
-            13627 Berlin<br/>
-            E-Mail: info@digitale-academy.de<br/>
+            <strong>Responsible for data processing:</strong><br/>
+            1618 Digital<br/>
+            Ömer Arslaner<br/>
+            Wirmerzeile 4, 13627 Berlin<br/>
+            E-Mail: info@1618-digital.de<br/>
             Telefon: +49 178 7277867
           </p>
 

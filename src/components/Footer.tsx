@@ -9,7 +9,7 @@ export default function Footer({ onOpenLegal, onOpenCookies }: FooterProps) {
   return (
     <footer className="footer-wrapper">
       <div className="footer-copyright">
-        © {new Date().getFullYear()} Digitale Academy. Represented by Ömer Arslaner. 
+        © {new Date().getFullYear()} 1618 Digital. Represented by Ömer Arslaner. 
       </div>
 
       <div className="footer-links">

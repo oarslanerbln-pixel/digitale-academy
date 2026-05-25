@@ -11,7 +11,7 @@ export default function SEOHead() {
 
   useEffect(() => {
     // 1. Update Document Title
-    const baseTitle = "Digitale Academy";
+    const baseTitle = "1618 Digital";
     const localizedTitle = t('meta_title');
     document.title = `${baseTitle} | ${localizedTitle}`;
 

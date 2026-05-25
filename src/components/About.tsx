@@ -48,7 +48,7 @@ export default function About() {
 
           
           <motion.img 
-            src="/benim.fotografim.JPG.jpg" 
+            src="/founder_profile.png" 
             alt="Founder & Digital Architect"
             whileHover={{ scale: 1.02, filter: 'grayscale(0%) contrast(1.1)' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}

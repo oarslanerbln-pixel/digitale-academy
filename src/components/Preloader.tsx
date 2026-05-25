@@ -86,7 +86,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             transition={{ delay: 0.2, duration: 1 }}
             className="preloader-brand"
         >
-            Digitale Academy
+            1618 Digital
         </motion.div>
         
         {/* Exquisitely thin progress line */}

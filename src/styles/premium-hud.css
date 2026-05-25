@@ -2,13 +2,13 @@
 
 :root {
   /* Color Palette */
-  --hud-bg-deep: #0a0a0a;
-  --hud-cyan: #00f2ff;
-  --hud-blue: #4d4dff;
-  --hud-amber: #ffaa00;
-  --hud-glass: rgba(255, 255, 255, 0.05);
-  --hud-border: rgba(0, 242, 255, 0.3);
-  --hud-glow: rgba(0, 242, 255, 0.15);
+  --hud-bg-deep: #0a0908;
+  --hud-cyan: #c5a073; /* Warm Bronze Gold */
+  --hud-blue: #855b32; /* Cocoa Brown */
+  --hud-amber: #e5c185; /* Champagne */
+  --hud-glass: rgba(255, 255, 255, 0.03);
+  --hud-border: rgba(197, 160, 115, 0.3);
+  --hud-glow: rgba(197, 160, 115, 0.12);
   
   /* Effects */
   --hud-blur: blur(12px);

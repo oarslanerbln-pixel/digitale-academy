@@ -129,13 +129,13 @@ function WireLine({ points, lineIndex, totalLines, colorMode = 'cyan' }: WireLin
   // Determine base & funk colors
   const { baseColor, funkColor } = useMemo(() => {
     if (colorMode === 'orange') {
-      // High-quality vibrant gold/orange (matches hero)
-      const base = new THREE.Color('#f97316').multiplyScalar(0.8);
-      const funk = new THREE.Color('#fdba74');
+      // High-quality vibrant warm bronze-gold (matches new theme)
+      const base = new THREE.Color('#c5a073').multiplyScalar(0.7);
+      const funk = new THREE.Color('#faf6f0');
       return { baseColor: base, funkColor: funk };
     }
-    // Warm Silver / Neutral (dim orange tint)
-    const base = new THREE.Color('#e2e2e5').lerp(new THREE.Color('#f97316'), 0.1);
+    // Warm Silver / Neutral Stone Grey (dim chocolate tint)
+    const base = new THREE.Color('#787068').multiplyScalar(0.6);
     const funk = new THREE.Color('#ffffff');
     return { baseColor: base, funkColor: funk };
   }, [lineIndex, totalLines, colorMode]);
@@ -299,7 +299,7 @@ function GlobeParticles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.012}
-        color="#fdba74"
+        color="#e5c185"
         transparent
         opacity={0.3}
         sizeAttenuation

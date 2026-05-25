@@ -7,7 +7,7 @@ export default function LanguageToggle() {
 
   const toggleLanguage = () => {
     playClick();
-    const langs = ['en', 'de', 'tr'];
+    const langs = ['en', 'de'];
     // Handle cases where language might be en-US
     const currentBaseLang = i18n.language.substring(0, 2).toLowerCase();
     const currentIndex = langs.indexOf(currentBaseLang) !== -1 ? langs.indexOf(currentBaseLang) : 0;
